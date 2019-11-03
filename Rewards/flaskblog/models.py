@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     received = db.Column(db.Integer)
     give_balance = db.Column(db.Integer)
+    admin =db.Column(db.Integer)
     # history = db.relationship('History', backref='username', lazy=True)
 
     def __repr__(self):

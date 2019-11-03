@@ -10,13 +10,6 @@ posts = [
         'msg': 'Appreciate someone today!',
     }
 ]
-receivers = [
-    'vrinda.sharma@utexas.edu',
-    'corey.frey@utexas.edu',
-    'sia.paul@utexas.edu',
-    'summer.dsouza@utexas.edu',
-    'true.thompson@utexas.edu'
-]
 
 
 @app.route("/")
@@ -37,7 +30,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data,email=form.email.data,password=hashed_password,received=0,give_balance=1000)
+        user = User(username=form.username.data,email=form.email.data,password=hashed_password,received=0,give_balance=1000,admin=0)
         db.session.add(user)
         db.session.commit()
         flash(f'Congratulations {form.username.data}! Your account has been created ! You can login now!', 'success')
@@ -64,6 +57,7 @@ def login():
 
 
 @app.route("/give",methods=['GET', 'POST'])
+@login_required
 def give():
     form=giveForm()
     if form.validate_on_submit():
@@ -84,6 +78,7 @@ def give():
 
 
 @app.route("/redeem",methods=['GET', 'POST'])
+@login_required
 def redeem():
     form=redeemForm()
     if form.validate_on_submit():
@@ -96,6 +91,7 @@ def redeem():
     return render_template('redeem.html', title='Redeem',form=form)
 
 @app.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
