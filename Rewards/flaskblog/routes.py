@@ -59,36 +59,44 @@ def login():
 @app.route("/give",methods=['GET', 'POST'])
 @login_required
 def give():
-    form=giveForm()
-    if form.validate_on_submit():
-        if form.points.data > 0 and form.points.data<=current_user.give_balance and User.query.filter(User.email.in_(form.receiver.data)) and form.receiver.data!=current_user.email:
-            flash(f'Wow! You have rewarded {form.points.data} to {form.receiver.data}!!','success')
-            current_user.give_balance = current_user.give_balance - form.points.data
-            db.session.commit()
-            flash(f'You have {current_user.give_balance} remaining your balance to give!')
-            user = User.query.filter_by(email=form.receiver.data).first()
-            user.received = user.received + form.points.data
-            History.amount = form.points.data
-            History.r_time = datetime.utcnow
-            db.session.commit()
-            return redirect(url_for('give'))
-        else:
-            flash(f'Please enter a valid receiver or valid points', 'danger')
-    return render_template('give.html', title='Give',form=form)
+    if current_user==0:
+        form=giveForm()
+        if form.validate_on_submit():
+            if form.points.data > 0 and form.points.data<=current_user.give_balance and User.query.filter(User.email.in_(form.receiver.data)) and form.receiver.data!=current_user.email:
+                flash(f'Wow! You have rewarded {form.points.data} to {form.receiver.data}!!','success')
+                current_user.give_balance = current_user.give_balance - form.points.data
+                db.session.commit()
+                flash(f'You have {current_user.give_balance} remaining your balance to give!')
+                user = User.query.filter_by(email=form.receiver.data).first()
+                user.received = user.received + form.points.data
+                History.amount = form.points.data
+                History.r_time = datetime.utcnow
+                db.session.commit()
+                return redirect(url_for('give'))
+            else:
+                flash(f'Please enter a valid receiver or valid points', 'danger')
+        return render_template('give.html', title='Give',form=form)
+    else:
+        flash(f'Access Denied!!!', 'danger')
+        return redirect(url_for('login'))
 
 
 @app.route("/redeem",methods=['GET', 'POST'])
 @login_required
 def redeem():
-    form=redeemForm()
-    if form.validate_on_submit():
-        if form.redeem_points.data>0 and form.redeem_points.data%10000==0 and form.redeem_points.data<=current_user.received:
-            current_user.received = current_user.received - form.redeem_points.data
-            db.session.commit()
-            flash(f'You have redeemed {form.redeem_points.data} from your points! A gift voucher worth ${form.redeem_points.data/100} has been sent to your email!')
-        else:
-            flash(f'Please enter points as a multiple of 10000!', 'danger')
-    return render_template('redeem.html', title='Redeem',form=form)
+    if current_user==0:
+        form=redeemForm()
+        if form.validate_on_submit():
+            if form.redeem_points.data>0 and form.redeem_points.data%10000==0 and form.redeem_points.data<=current_user.received:
+                current_user.received = current_user.received - form.redeem_points.data
+                db.session.commit()
+                flash(f'You have redeemed {form.redeem_points.data} from your points! A gift voucher worth ${form.redeem_points.data/100} has been sent to your email!')
+            else:
+                flash(f'Please enter points as a multiple of 10000!', 'danger')
+        return render_template('redeem.html', title='Redeem',form=form)
+    else:
+        flash(f'Access Denied!!!', 'danger')
+        return redirect(url_for('login'))
 
 @app.route("/logout")
 @login_required
