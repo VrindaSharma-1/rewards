@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="rewards" uuid="a59a9f1f-992b-404f-b187-349201e293ef">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Vrinda Sharma\Documents\FALL\Data Management\project\code_snippets\Python\Flask_Blog\03-Forms-and-Validation\rewards\rewards.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="flaskblog" uuid="0d98a941-9211-4b15-bcf4-3af073a44d3c">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Vrinda Sharma\Documents\FALL\Data Management\project\code_snippets\Python\Flask_Blog\03-Forms-and-Validation\flaskblog\flaskblog.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="rewrds" uuid="f5b2bc42-89ae-436b-9b0b-26831aa7ade6">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Vrinda Sharma\Documents\FALL\Data Management\project\code_snippets\Python\Flask_Blog\03-Forms-and-Validation\flaskblog\rewrds.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
