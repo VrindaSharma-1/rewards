@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect,request
 from flaskblog import app,db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, giveForm,redeemForm
-from flaskblog.models import User
+from flaskblog.models import User,History
 from flask_login import login_user, current_user,logout_user,login_required
 from datetime import datetime
 
@@ -68,8 +68,8 @@ def give():
             flash(f'You have {current_user.give_balance} remaining your balance to give!')
             user = User.query.filter_by(email=form.receiver.data).first()
             user.received = user.received + form.points.data
-            # History.r_hist = form.points.data
-            # History.r_time = datetime.utcnow
+            History.amount = form.points.data
+            History.r_time = datetime.utcnow
             db.session.commit()
             return redirect(url_for('give'))
         else:
