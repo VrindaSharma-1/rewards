@@ -37,7 +37,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data,email=form.email.data,password=hashed_password,received=0,give_balance=10000)
+        user = User(username=form.username.data,email=form.email.data,password=hashed_password,received=0,give_balance=1000)
         db.session.add(user)
         db.session.commit()
         flash(f'Congratulations {form.username.data}! Your account has been created ! You can login now!', 'success')
@@ -87,12 +87,12 @@ def give():
 def redeem():
     form=redeemForm()
     if form.validate_on_submit():
-        if form.redeem_points.data>0 and form.redeem_points.data%1000==0 and form.redeem_points.data<=current_user.received:
+        if form.redeem_points.data>0 and form.redeem_points.data%10000==0 and form.redeem_points.data<=current_user.received:
             current_user.received = current_user.received - form.redeem_points.data
             db.session.commit()
-            flash(f'You have redeemed {form.redeem_points.data} from your points! A gift voucher worth ${form.redeem_points.data/10} has been sent to your email!')
+            flash(f'You have redeemed {form.redeem_points.data} from your points! A gift voucher worth ${form.redeem_points.data/100} has been sent to your email!')
         else:
-            flash(f'Please enter points as a multiple of 1000!', 'danger')
+            flash(f'Please enter points as a multiple of 10000!', 'danger')
     return render_template('redeem.html', title='Redeem',form=form)
 
 @app.route("/logout")
