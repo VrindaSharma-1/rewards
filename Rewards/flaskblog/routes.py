@@ -108,3 +108,36 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', title='Account')
+
+
+@app.route("/admin")
+@login_required
+def admin():
+    return render_template('admin.html',title='Admin')
+
+@app.route("/tranhis")
+@login_required
+def tranhis():
+    return render_template('tranhis.html',title='Transaction History')
+
+@app.route("/endmonth")
+@login_required
+def endmonth():
+    return render_template('endmonth.html',title='End the Month?')
+
+@app.route("/userrank")
+@login_required
+def userrank():
+    if request.method == 'POST':
+        result = request.form
+        return render_template('userrank.html',title='User Ranking',result = result)
+
+@app.route("/userwithcredit")
+@login_required
+def userwithcredit():
+    return render_template('userwithcredit.html',title='Credit Left')
+
+@app.route("/redemptions")
+@login_required
+def redemptions():
+    return render_template('redemptions.html',title='Redemptions')

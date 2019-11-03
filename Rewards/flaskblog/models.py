@@ -20,13 +20,12 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.give_balance}','{self.received}')"
 
-class History(db.Model, UserMixin):
+class History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    amount=db.Column(db.Integer)
+    amount = db.Column(db.Integer)
     r_time = db.Column(db.DateTime, nullable=False)
-    getuser_id = db.Column(db.Integer, nullable=False)
-    senduser_id = db.Column(db.Integer, nullable=False)
-
+    senduser_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    getuser_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"User('{self.r_time}', '{self.amount}', '{self.getuser_id}','{self.senduser_id}')"
+        return f"History('{self.amount}', '{self.r_time}', '{self.senduser_id}','{self.getuser_id}')"
