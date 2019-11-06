@@ -1,0 +1,31 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="media">
+  <table border="1">
+      <thead>
+        <th style="padding:10px">Transaction ID</th>
+        <th style="padding:10px">Amount</th>
+        <th style="padding:10px">Time</th>
+        <th style="padding:10px">User who sent</th>
+        <th style="padding:10px">User who receive</th>
+
+      </thead>
+
+      {% for event in events %}
+
+      <tbody>
+      <tr>
+            <td style="padding:10px">{{event.hisid}}</td>
+            <td style="padding:10px">{{event.amount}}</td>
+            <td style="padding:10px">{{event.r_time}}</td>
+            <td style="padding:10px">{{event.senduser_id}}</td>
+            <td style="padding:10px">{{event.getuser_id}}</td>
+      </tr>
+      </tbody>
+      {% else %}
+      <p>No Users found</p>
+      {% endfor %}
+  </table>
+
+</div>
+{% endblock content %}
