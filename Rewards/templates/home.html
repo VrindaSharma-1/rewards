@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <h2 class="mr-2" href="{{ url_for('give') }}">{{ post.msg }}</h2>
+
+            </div>
+
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "admin.html" %}
+{% block content %}
+    <div class="media">
+  <table border="1">
+      <thead>
+        <th style="padding:10px">ID</th>
+        <th style="padding:10px">User Name</th>
+        <th style="padding:10px">Email</th>
+        <th style="padding:10px">Credit Left</th>
+
+      </thead>
+
+      {% for event in events %}
+
+      <tbody>
+      <tr>
+            <td style="padding:10px">{{event.id}}</td>
+            <td style="padding:10px">{{event.username}}</td>
+            <td style="padding:10px">{{event.email}}</td>
+            <td style="padding:10px">{{event.give_balance}}</td>
+      </tr>
+      </tbody>
+      {% else %}
+      <p>No Users found</p>
+      {% endfor %}
+  </table>
+
+</div>
+{% endblock content %}

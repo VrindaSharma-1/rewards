@@ -1,3 +1,4 @@
+python-dateutil==2.8.1
 Flask==1.0.2
 Flask-SQLAlchemy==2.4.0
 PyMySQL==0.9.3
@@ -5,3 +6,6 @@ pytz
 bcrypt==3.1.6
 Flask-Bcrypt==0.7.1
 Flask-Login
+Dictalchemy
+SQLAlchemy-Views==0.2.3
+Flask-Appbuilder

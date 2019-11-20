@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+<div class="pb-5">
+  <table border="1">
+      <thead>
+{#        <th style="padding:10px">User ID</th>#}
+        <th style="padding:10px">Points Redeemed</th>
+        <th style="padding:10px">Redeemed On</th>
+
+      </thead>
+
+      {% for event in events %}
+      <tbody>
+      <tr>
+{#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">{{event.amount}}</td>
+            <td style="padding:10px">{{event.redeemtime}}</td>
+      </tr>
+      </tbody>
+      {% else %}
+      <p>-- You have not redeemed any points yet!--</p>
+      <tr>
+{#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">--</td>
+            <td style="padding:10px">--</td>
+      </tr>
+      {% endfor %}
+  </table>
+</div>
+</div>
+<div class="content-section">
+<div class="pb-5">
+
+  <table border="1">
+      <thead>
+{#        <th style="padding:10px">User ID</th>#}
+        <th style="padding:10px">Gifted To</th>
+        <th style="padding:10px">Points Gifted</th>
+        <th style="padding:10px">Gifted On</th>
+
+      </thead>
+
+      {% for event in sends %}
+      <tbody>
+      <tr>
+
+          {#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">{{event.getuser_id}}</td>
+            <td style="padding:10px">{{event.amount}}</td>
+            <td style="padding:10px">{{event.r_time}}</td>
+
+      </tr>
+      </tbody>
+      {% else %}
+      <p>You have not gifted any points to anyone yet!</p>
+      <tr>
+{#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">--</td>
+            <td style="padding:10px">--</td>
+      </tr>
+      {% endfor %}
+  </table>
+</div>
+</div>
+<div class="content-section">
+<div class="pb-5">
+  <table border="1">
+      <thead>
+{#        <th style="padding:10px">User ID</th>#}
+        <th style="padding:10px">Received From</th>
+        <th style="padding:10px">Points Received</th>
+        <th style="padding:10px">Received On</th>
+
+      </thead>
+
+      {% for event in gets %}
+      <tbody>
+      <tr>
+
+          {#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">{{event.senduser_id}}</td>
+            <td style="padding:10px">{{event.amount}}</td>
+            <td style="padding:10px">{{event.r_time}}</td>
+
+      </tr>
+      </tbody>
+      {% else %}
+      <p>You have not gifted any points to anyone yet!</p>
+      <tr>
+{#            <td style="padding:10px">{{event.reuser_id}}</td>#}
+            <td style="padding:10px">--</td>
+            <td style="padding:10px">--</td>
+      </tr>
+      {% endfor %}
+  </table>
+
+</div>
+</div>
+
+
+
+{% endblock content %}

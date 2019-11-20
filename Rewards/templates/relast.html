@@ -1,0 +1,26 @@
+{% extends "admin.html" %}
+{% block content %}
+<div class="media">
+  <table border="1">
+      <thead>
+        <th style="padding:10px">User ID</th>
+        <th style="padding:10px">Amount</th>
+        <th style="padding:10px">Datetime</th>
+
+      </thead>
+
+      {% for event in events %}
+      <tbody>
+      <tr>
+            <td style="padding:10px">{{event.reuser_id}}</td>
+            <td style="padding:10px">{{event.amount}}</td>
+            <td style="padding:10px">{{event.redeemtime}}</td>
+      </tr>
+      </tbody>
+      {% else %}
+      <p>No Users found</p>
+      {% endfor %}
+  </table>
+
+</div>
+{% endblock content %}
